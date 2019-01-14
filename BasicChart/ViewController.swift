@@ -30,6 +30,18 @@ class SessionStatsViewController: UIViewController {
 		barChartUpdate()
 	}
 	
+	// our raw data that we wish to present on the chart
+	func someFakeData() -> [Date : Double] {
+		let date1 = Date()
+		let date2 = Calendar.current.date(byAdding: .day, value: -1, to: date1)!
+		let date3 = Calendar.current.date(byAdding: .day, value: -2, to: date1)!
+		let date4 = Calendar.current.date(byAdding: .day, value: -5, to: date1)!
+		let date5 = Calendar.current.date(byAdding: .day, value: -8, to: date1)!
+		
+		return [date1: 3, date2: 4, date3: 1, date4: 8, date5: 2]
+	}
+	
+	// The data the chart will consume
 	func convertToChartDataEntry(_ dayData: [Date: Double]) -> [ChartDataEntry] {
 		let sortedDayData = dayData.sorted { $0.key < $1.key }
 		
@@ -41,16 +53,6 @@ class SessionStatsViewController: UIViewController {
 		
 		assert(dayData.count == data.count)
 		return data
-	}
-	
-	func someFakeData() -> [Date : Double] {
-		let date1 = Date()
-		let date2 = Calendar.current.date(byAdding: .day, value: -1, to: date1)!
-		let date3 = Calendar.current.date(byAdding: .day, value: -2, to: date1)!
-		let date4 = Calendar.current.date(byAdding: .day, value: -5, to: date1)!
-		let date5 = Calendar.current.date(byAdding: .day, value: -8, to: date1)!
-
-		return [date1: 3, date2: 4, date3: 1, date4: 8, date5: 2]
 	}
 	
 	func barChartUpdate() {
@@ -154,6 +156,9 @@ class SessionStatsViewController: UIViewController {
 		return formatter
 	}()
 }
+
+// Optional only if you want a popover when select an item
+// charts has a built in one but i created a custom one here
 
 class PillMarker: MarkerImage {
 	
