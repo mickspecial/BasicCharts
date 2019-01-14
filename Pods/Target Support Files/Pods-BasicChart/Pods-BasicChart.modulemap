@@ -1,0 +1,6 @@
+framework module Pods_BasicChart {
+  umbrella header "Pods-BasicChart-umbrella.h"
+
+  export *
+  module * { export * }
+}
